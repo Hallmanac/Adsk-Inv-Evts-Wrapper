@@ -1,7 +1,11 @@
 <Configuration>
   <RecentFiles>
-    <RecentFiles />
-    <RecentEdits />
+    <RecentFiles>
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:MouseEventsLib.cs" caret="1870" fromTop="33" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:MouseEventsLib.cs" caret="1847" fromTop="32" />
+    </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
     <NAntPath value="" />
@@ -20,4 +24,9 @@
       <setting name="SolutionAnalysisEnabled">False</setting>
     </boolean>
   </SettingsComponent>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="CSharpCodeCompletionContext">
+      <Item value="this" priority="31" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
 </Configuration>

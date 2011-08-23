@@ -54,6 +54,7 @@ namespace InventorEvents2010
             }
         }
 
+        //Constructor
         public MouseEventsLib(Inventor.Application inventorApp,
             InteractionEvents interactionEvents = null)
         {
