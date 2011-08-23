@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6C988887-6D50-4B4E-A3AB-59B2561D10E2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InventorEvents2011</RootNamespace>
+    <AssemblyName>InventorEvents2011</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RegisterForComInterop>true</RegisterForComInterop>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autodesk.Inventor.interop, Version=15.0.0.0, Culture=neutral, PublicKeyToken=d84147f8b4276564, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic.Compatibility" />
+    <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationEventsLib.cs" />
+    <Compile Include="AssemblyEventsLib.cs" />
+    <Compile Include="BrowserPaneEventsLib.cs" />
+    <Compile Include="BrowserPanesEventsLib .cs" />
+    <Compile Include="ButtonEventsLib.cs" />
+    <Compile Include="ChangeDefinitionEventsLib.cs" />
+    <Compile Include="ChangeProcessorEventsLib.cs" />
+    <Compile Include="ComboBoxEventsLib.cs" />
+    <Compile Include="DocumentEventsLib.cs" />
+    <Compile Include="DrawingEventsLib.cs" />
+    <Compile Include="DrawingViewEventsLib.cs" />
+    <Compile Include="FileAccessEventsLib.cs" />
+    <Compile Include="FileManagerEventsLib.cs" />
+    <Compile Include="FileUIEventsLib.cs" />
+    <Compile Include="Interfaces\IMouseEventsLib.cs" />
+    <Compile Include="Interfaces\IModelingEventsLib.cs" />
+    <Compile Include="Interfaces\IMeasureEventsLib.cs" />
+    <Compile Include="Interfaces\IKeyboardEventsLib.cs" />
+    <Compile Include="Interfaces\IInteractionEventsLib.cs" />
+    <Compile Include="Interfaces\IFileUIEventsLib.cs" />
+    <Compile Include="Interfaces\IFileManagerEventsLib.cs" />
+    <Compile Include="Interfaces\IFileAccessEventsLib.cs" />
+    <Compile Include="Interfaces\IDrawingViewEventsLib.cs" />
+    <Compile Include="Interfaces\IDrawingEventsLib.cs" />
+    <Compile Include="Interfaces\IDocumentEventsLib.cs" />
+    <Compile Include="Interfaces\IComboBoxEventsLib.cs" />
+    <Compile Include="Interfaces\IChangeProcessorEventsLib.cs" />
+    <Compile Include="Interfaces\IChangeDefinitionEventsLib.cs" />
+    <Compile Include="Interfaces\IButtonEventsLib.cs" />
+    <Compile Include="Interfaces\IBrowserPanesEventsLib.cs" />
+    <Compile Include="Interfaces\IBrowserPaneEventsLib.cs" />
+    <Compile Include="Interfaces\IAssemblyEventsLib.cs" />
+    <Compile Include="Interfaces\IApplicationEventsLib.cs" />
+    <Compile Include="InteractionEventsLib.cs" />
+    <Compile Include="Interfaces\IPartEventsLib.cs" />
+    <Compile Include="Interfaces\IRepresentationEventsLib.cs" />
+    <Compile Include="Interfaces\ISelectEventsLib.cs" />
+    <Compile Include="Interfaces\ISketchEventsLib.cs" />
+    <Compile Include="Interfaces\IStyleEventsLib.cs" />
+    <Compile Include="Interfaces\ITriadEventsLib.cs" />
+    <Compile Include="Interfaces\IUserInputEventsLib.cs" />
+    <Compile Include="Interfaces\IUserInterfaceEventsLib.cs" />
+    <Compile Include="KeyboardEventsLib.cs" />
+    <Compile Include="MeasureEventsLib.cs" />
+    <Compile Include="ModelingEventsLib.cs" />
+    <Compile Include="MouseEventsLib.cs" />
+    <Compile Include="PartEventsLib.cs" />
+    <Compile Include="RepresentationEventsLib.cs" />
+    <Compile Include="SelectEventsLib.cs" />
+    <Compile Include="SketchEventsLib.cs" />
+    <Compile Include="StyleEventsLib.cs" />
+    <Compile Include="TriadEventsLib.cs" />
+    <Compile Include="UserInputEventsLib.cs" />
+    <Compile Include="UserInterfaceEventsLib.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

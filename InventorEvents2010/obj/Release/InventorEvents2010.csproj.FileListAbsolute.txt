@@ -1,0 +1,15 @@
+D:\Visual Studio Workspace\InventorEventsLibrary\InventorEventsLibrary\obj\Release\ResolveAssemblyReference.cache
+D:\Visual Studio Workspace\InventorEventsLibrary\InventorEventsLibrary\obj\Release\InventorEvents2010.dll
+D:\Visual Studio Workspace\InventorEventsLibrary\InventorEventsLibrary\obj\Release\InventorEvents2010.pdb
+C:\Program Files\Autodesk\QubeItLibraries\InventorEvents2010.dll
+C:\Program Files\Autodesk\QubeItLibraries\InventorEvents2010.pdb
+C:\Program Files\Autodesk\QubeItLibraries\InventorEvents2010.tlb
+D:\Visual Studio Workspace\InventorEventsLibrary\InventorEvents2010\obj\Release\ResolveAssemblyReference.cache
+D:\Visual Studio Workspace\InventorEventsLibrary\InventorEvents2010\obj\Release\InventorEvents2010.dll
+D:\Visual Studio Workspace\InventorEventsLibrary\InventorEvents2010\obj\Release\InventorEvents2010.pdb
+X:\Visual Studio Workspace\InventorEventsLibrary\InventorEvents2010\bin\Release\InventorEvents2010.dll
+X:\Visual Studio Workspace\InventorEventsLibrary\InventorEvents2010\bin\Release\InventorEvents2010.pdb
+X:\Visual Studio Workspace\InventorEventsLibrary\InventorEvents2010\bin\Release\InventorEvents2010.tlb
+X:\Visual Studio Workspace\InventorEventsLibrary\InventorEvents2010\obj\Release\ResolveAssemblyReference.cache
+X:\Visual Studio Workspace\InventorEventsLibrary\InventorEvents2010\obj\Release\InventorEvents2010.dll
+X:\Visual Studio Workspace\InventorEventsLibrary\InventorEvents2010\obj\Release\InventorEvents2010.pdb

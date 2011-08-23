@@ -1,0 +1,7 @@
+C:\Program Files\Autodesk\Inventor 2011\SDK\MyCustomLibraries\Inventor2011EventsLibrary.dll
+C:\Program Files\Autodesk\Inventor 2011\SDK\MyCustomLibraries\Inventor2011EventsLibrary.pdb
+D:\Visual Studio Workspace\InventorEventsLibrary\Inventor2011EventsLibrary\obj\Release\ResolveAssemblyReference.cache
+D:\Visual Studio Workspace\InventorEventsLibrary\Inventor2011EventsLibrary\obj\Release\Inventor2011EventsLibrary.dll
+D:\Visual Studio Workspace\InventorEventsLibrary\Inventor2011EventsLibrary\obj\Release\Inventor2011EventsLibrary.pdb
+C:\Program Files\Autodesk\QubeItLibraries\Inventor2011EventsLibrary.dll
+C:\Program Files\Autodesk\QubeItLibraries\Inventor2011EventsLibrary.pdb

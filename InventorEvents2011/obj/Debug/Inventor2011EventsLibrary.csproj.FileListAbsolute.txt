@@ -1,0 +1,5 @@
+D:\Visual Studio Workspace\InventorEventsLibrary\Inventor2011EventsLibrary\bin\Debug\Inventor2011EventsLibrary.dll
+D:\Visual Studio Workspace\InventorEventsLibrary\Inventor2011EventsLibrary\bin\Debug\Inventor2011EventsLibrary.pdb
+D:\Visual Studio Workspace\InventorEventsLibrary\Inventor2011EventsLibrary\obj\Debug\ResolveAssemblyReference.cache
+D:\Visual Studio Workspace\InventorEventsLibrary\Inventor2011EventsLibrary\obj\Debug\Inventor2011EventsLibrary.dll
+D:\Visual Studio Workspace\InventorEventsLibrary\Inventor2011EventsLibrary\obj\Debug\Inventor2011EventsLibrary.pdb
