@@ -1,40 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Inventor;
-using System.Windows.Forms;
+﻿using Inventor;
 using InventorEvents2011.Interfaces;
 
 namespace InventorEvents2011
 {
     public class FileAccessEventsLib : IFileAccessEventsLib
     {
-        private Inventor.Application inventorApp;
+        private Application inventorApp;
 
-        public FileAccessEventsSink_OnFileDirtyEventHandler OnFileDirtyDelegate
-        { get; set; }
-        public FileAccessEventsSink_OnFileResolutionEventHandler OnFileResolutionDelegate
-        { get; set; }
-
-        public FileAccessEvents FileAccessEvents { get; private set; }
-
-        public FileAccessEventsLib(Inventor.Application inventorApp )
+        public FileAccessEventsLib(Application inventorApp)
         {
             this.inventorApp = inventorApp;
-            this.FileAccessEvents = inventorApp.FileAccessEvents;
+            FileAccessEvents = inventorApp.FileAccessEvents;
+            Activate();
         }
+
+        #region IFileAccessEventsLib Members
+
+        public FileAccessEventsSink_OnFileDirtyEventHandler OnFileDirtyDelegate { get; set; }
+        public FileAccessEventsSink_OnFileResolutionEventHandler OnFileResolutionDelegate { get; set; }
+
+        public FileAccessEvents FileAccessEvents { get; private set; }
 
         /// <summary>
         /// Removes all the delegates from the events and nullifies the delegates
         /// </summary>
         public void Deactivate()
         {
-            this.FileAccessEvents.OnFileDirty -= this.OnFileDirtyDelegate;
-            this.OnFileDirtyDelegate = null;
+            FileAccessEvents.OnFileDirty -= OnFileDirtyDelegate;
+            OnFileDirtyDelegate = null;
 
-            this.FileAccessEvents.OnFileResolution -= this.OnFileResolutionDelegate;
-            this.OnFileResolutionDelegate = null;
+            FileAccessEvents.OnFileResolution -= OnFileResolutionDelegate;
+            OnFileResolutionDelegate = null;
+        }
+
+        #endregion
+
+        private void Activate()
+        {
+            FileAccessEvents.OnFileResolution += OnFileResolutionDelegate;
+            FileAccessEvents.OnFileDirty += OnFileDirtyDelegate;
         }
     }
 }

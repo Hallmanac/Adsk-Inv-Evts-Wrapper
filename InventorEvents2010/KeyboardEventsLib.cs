@@ -1,63 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Inventor;
-using System.Windows.Forms;
+﻿using Inventor;
 using InventorEvents2010.Interfaces;
 
 namespace InventorEvents2010
 {
     public class KeyboardEventsLib : IKeyboardEventsLib
     {
-        private Inventor.Application invApp;
-        
-        public KeyboardEventsSink_OnKeyDownEventHandler OnKeyDownDelegate
-        { get; set; }
-        public KeyboardEventsSink_OnKeyPressEventHandler OnKeyPressDelegate
-        { get; set; }
-        public KeyboardEventsSink_OnKeyUpEventHandler OnKeyUpDelegate
-        { get; set; }
-
+        private readonly Application invApp;
+        private KeyboardEvents keyboardEvents;
         private InteractionEvents localInteractionEvents;
+
+        public KeyboardEventsLib(Application inventorApp,
+                                 InteractionEvents interactionEvents = null)
+        {
+            invApp = inventorApp;
+
+            if (interactionEvents == null) return;
+            localInteractionEvents = interactionEvents;
+            keyboardEvents = interactionEvents.KeyboardEvents;
+            Activate();
+        }
+
+        #region IKeyboardEventsLib Members
+
+        public KeyboardEventsSink_OnKeyDownEventHandler OnKeyDownDelegate { get; set; }
+        public KeyboardEventsSink_OnKeyPressEventHandler OnKeyPressDelegate { get; set; }
+        public KeyboardEventsSink_OnKeyUpEventHandler OnKeyUpDelegate { get; set; }
+
         public InteractionEvents LocalInteractionEvents
         {
-            set { this.localInteractionEvents = value; }
-            
-            get 
+            set { localInteractionEvents = value; }
+
+            get
             {
-                if(this.localInteractionEvents == null)
-                {
-                    this.localInteractionEvents =
-                        this.invApp.CommandManager.CreateInteractionEvents();
-                }
-                return this.localInteractionEvents; 
+                return localInteractionEvents ??
+                       (localInteractionEvents = invApp.CommandManager.CreateInteractionEvents());
             }
         }
 
-        private KeyboardEvents keyboardEvents;
         public KeyboardEvents KeyboardEvents
         {
-            get 
-            {
-                if(this.keyboardEvents == null)
-                {
-                    this.keyboardEvents = this.LocalInteractionEvents.KeyboardEvents;
-                }
-                return this.keyboardEvents; 
-            }
-        }
-
-        public KeyboardEventsLib(Inventor.Application inventorApp, 
-            InteractionEvents interactionEvents = null)
-        {
-            this.invApp = inventorApp;
-
-            if (interactionEvents != null)
-            {
-                this.localInteractionEvents = interactionEvents;
-                this.keyboardEvents = interactionEvents.KeyboardEvents;                  
-            }
+            get { return keyboardEvents ?? (keyboardEvents = LocalInteractionEvents.KeyboardEvents); }
         }
 
         /// <summary>
@@ -65,14 +47,23 @@ namespace InventorEvents2010
         /// </summary>
         public void Deactivate()
         {
-            this.keyboardEvents.OnKeyDown -= this.OnKeyDownDelegate;
-            this.OnKeyDownDelegate = null;
+            keyboardEvents.OnKeyDown -= OnKeyDownDelegate;
+            OnKeyDownDelegate = null;
 
-            this.keyboardEvents.OnKeyPress -= this.OnKeyPressDelegate;
-            this.OnKeyPressDelegate = null;
+            keyboardEvents.OnKeyPress -= OnKeyPressDelegate;
+            OnKeyPressDelegate = null;
 
-            this.keyboardEvents.OnKeyUp -= this.OnKeyUpDelegate;
-            this.OnKeyUpDelegate = null;
+            keyboardEvents.OnKeyUp -= OnKeyUpDelegate;
+            OnKeyUpDelegate = null;
+        }
+
+        #endregion
+
+        private void Activate()
+        {
+            KeyboardEvents.OnKeyDown += OnKeyDownDelegate;
+            KeyboardEvents.OnKeyPress += OnKeyPressDelegate;
+            KeyboardEvents.OnKeyUp += OnKeyUpDelegate;
         }
     }
 }

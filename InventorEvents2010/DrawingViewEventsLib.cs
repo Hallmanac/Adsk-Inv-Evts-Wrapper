@@ -1,36 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Inventor;
-using System.Windows.Forms;
+﻿using Inventor;
 using InventorEvents2010.Interfaces;
 
 namespace InventorEvents2010
 {
     public class DrawingViewEventsLib : IDrawingViewEventsLib
     {
-        private Inventor.Application inventorApp;
+        private Application inventorApp;
 
-        public DrawingViewEventsSink_OnViewUpdateEventHandler OnViewUpdateDelegate
-        { get; set; }
-
-        public DrawingViewEvents DrawingViewEvents { get; private set; }
-
-        public DrawingViewEventsLib(Inventor.Application inventorApp, 
-            DrawingView drawingView)
+        public DrawingViewEventsLib(Application inventorApp,
+                                    DrawingView drawingView)
         {
             this.inventorApp = inventorApp;
-            this.DrawingViewEvents = drawingView.DrawingViewEvents;
+            DrawingViewEvents = drawingView.DrawingViewEvents;
+            Activate();
         }
+
+        #region IDrawingViewEventsLib Members
+
+        public DrawingViewEventsSink_OnViewUpdateEventHandler OnViewUpdateDelegate { get; set; }
+
+        public DrawingViewEvents DrawingViewEvents { get; private set; }
 
         /// <summary>
         /// Removes all the delegates from the events and nullifies the delegates
         /// </summary>
         public void Deactivate()
         {
-            this.DrawingViewEvents.OnViewUpdate -= this.OnViewUpdateDelegate;
-            this.OnViewUpdateDelegate = null;
+            DrawingViewEvents.OnViewUpdate -= OnViewUpdateDelegate;
+            OnViewUpdateDelegate = null;
+        }
+
+        #endregion
+
+        private void Activate()
+        {
+            DrawingViewEvents.OnViewUpdate += OnViewUpdateDelegate;
         }
     }
 }

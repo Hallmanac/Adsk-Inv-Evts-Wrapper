@@ -1,26 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Inventor;
-using System.Windows.Forms;
+﻿using Inventor;
 using InventorEvents2011.Interfaces;
 
 namespace InventorEvents2011
 {
     public class PartEventsLib : IPartEventsLib
     {
-        private Inventor.Application inventorApp;
+        private Application inventorApp;
+        private PartComponentDefinition partComponentDefinition;
 
-        public PartEventsSink_OnSurfaceBodyChangedEventHandler OnSurfaceBodyChangedDelegate
-        { get; set; }
+        public PartEventsLib(Application inventorApp, PartComponentDefinition
+                                                          partComponentDef)
+        {
+            this.inventorApp = inventorApp;
+            PartEvents = partComponentDef.PartEvents;
+            Activate();
+        }
+
+        #region IPartEventsLib Members
+
+        public PartEventsSink_OnSurfaceBodyChangedEventHandler OnSurfaceBodyChangedDelegate { get; set; }
 
         public PartEvents PartEvents { get; private set; }
 
-        private PartComponentDefinition partComponentDefinition;
         public PartComponentDefinition PartComponentDefinition
         {
-            get{return partComponentDefinition;}
+            get { return partComponentDefinition; }
             set
             {
                 partComponentDefinition = value;
@@ -28,20 +32,20 @@ namespace InventorEvents2011
             }
         }
 
-        public PartEventsLib(Inventor.Application inventorApp, PartComponentDefinition
-            partComponentDef)
-        {
-            this.inventorApp = inventorApp;
-            this.PartEvents = partComponentDef.PartEvents;
-        }
-
         /// <summary>
         /// Removes all the delegates from the events and nullifies the delegates
         /// </summary>
         public void Deactivate()
         {
-            this.PartEvents.OnSurfaceBodyChanged -= this.OnSurfaceBodyChangedDelegate;
-            this.OnSurfaceBodyChangedDelegate = null;
+            PartEvents.OnSurfaceBodyChanged -= OnSurfaceBodyChangedDelegate;
+            OnSurfaceBodyChangedDelegate = null;
+        }
+
+        #endregion
+
+        private void Activate()
+        {
+            PartEvents.OnSurfaceBodyChanged += OnSurfaceBodyChangedDelegate;
         }
     }
 }

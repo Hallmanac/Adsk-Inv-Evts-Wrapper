@@ -1,137 +1,167 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Inventor;
-using System.Windows.Forms;
+﻿using Inventor;
 using InventorEvents2010.Interfaces;
 
 namespace InventorEvents2010
 {
     public class ApplicationEventsLib : IApplicationEventsLib
     {
-        private Inventor.Application inventorApp;
+        private readonly Application inventorApp;
 
-        public ApplicationEventsSink_OnActivateDocumentEventHandler OnActivateDocumentDelegate 
-        { get; set; }
-        public ApplicationEventsSink_OnActivateViewEventHandler OnActivateViewDelegate
-        { get; set; }
+        public ApplicationEventsLib(Application inventorApp)
+        {
+            this.inventorApp = inventorApp;
+            ApplicationEvents = this.inventorApp.ApplicationEvents;
+            Activate();
+        }
+
+        #region IApplicationEventsLib Members
+
+        public ApplicationEventsSink_OnActivateDocumentEventHandler OnActivateDocumentDelegate { get; set; }
+        public ApplicationEventsSink_OnActivateViewEventHandler OnActivateViewDelegate { get; set; }
+
         public ApplicationEventsSink_OnActiveProjectChangedEventHandler
             OnActiveProjectChangedDelegate { get; set; }
+
         public ApplicationEventsSink_OnApplicationOptionChangeEventHandler
             OnApplicationOptionChangeDelegate { get; set; }
-        public ApplicationEventsSink_OnCloseDocumentEventHandler OnCloseDocumentDelegate
-        { get; set; }
-        public ApplicationEventsSink_OnCloseViewEventHandler OnCloseViewDelegate
-        { get; set; }
-        public ApplicationEventsSink_OnDeactivateDocumentEventHandler OnDeactivateDocumentDelegate
-        { get; set; }
-        public ApplicationEventsSink_OnDeactivateViewEventHandler OnDeactivateViewDelegate
-        { get; set; }
-        public ApplicationEventsSink_OnDisplayModeChangeEventHandler OnDisplayModeChangeDelegate
-        { get; set; }
-        public ApplicationEventsSink_OnDocumentChangeEventHandler OnDocumentChangeDelegate
-        { get; set; }
-        public ApplicationEventsSink_OnInitializeDocumentEventHandler OnInitializeDocumentDelegate
-        { get; set; }
-        public ApplicationEventsSink_OnMigrateDocumentEventHandler OnMigrateDocumentDelegate
-        { get; set; }
-        public ApplicationEventsSink_OnNewDocumentEventHandler OnNewDocumentDelegate
-        { get; set; }
-        public ApplicationEventsSink_OnNewEditObjectEventHandler OnNewEditObjectDelegate
-        { get; set; }
-        public ApplicationEventsSink_OnNewViewEventHandler OnNewViewDelegate
-        { get; set; }
-        public ApplicationEventsSink_OnOpenDocumentEventHandler OnOpenDocumentDelegate
-        { get; set; }
-        public ApplicationEventsSink_OnQuitEventHandler OnQuitDelegate
-        {get; set;}
-        public ApplicationEventsSink_OnReadyEventHandler OnReadyDelegate
-        { get; set; }
-        public ApplicationEventsSink_OnSaveDocumentEventHandler OnSaveDocumentDelegate
-        { get; set; }
-        public ApplicationEventsSink_OnTerminateDocumentEventHandler OnTerminateDocumentDelegate
-        { get; set; }
-        public ApplicationEventsSink_OnTranslateDocumentEventHandler OnTranslateDocumentDelegate
-        { get; set; }
+
+        public ApplicationEventsSink_OnCloseDocumentEventHandler OnCloseDocumentDelegate { get; set; }
+        public ApplicationEventsSink_OnCloseViewEventHandler OnCloseViewDelegate { get; set; }
+        public ApplicationEventsSink_OnDeactivateDocumentEventHandler OnDeactivateDocumentDelegate { get; set; }
+        public ApplicationEventsSink_OnDeactivateViewEventHandler OnDeactivateViewDelegate { get; set; }
+        public ApplicationEventsSink_OnDisplayModeChangeEventHandler OnDisplayModeChangeDelegate { get; set; }
+        public ApplicationEventsSink_OnDocumentChangeEventHandler OnDocumentChangeDelegate { get; set; }
+        public ApplicationEventsSink_OnInitializeDocumentEventHandler OnInitializeDocumentDelegate { get; set; }
+        public ApplicationEventsSink_OnMigrateDocumentEventHandler OnMigrateDocumentDelegate { get; set; }
+        public ApplicationEventsSink_OnNewDocumentEventHandler OnNewDocumentDelegate { get; set; }
+        public ApplicationEventsSink_OnNewEditObjectEventHandler OnNewEditObjectDelegate { get; set; }
+        public ApplicationEventsSink_OnNewViewEventHandler OnNewViewDelegate { get; set; }
+        public ApplicationEventsSink_OnOpenDocumentEventHandler OnOpenDocumentDelegate { get; set; }
+        public ApplicationEventsSink_OnQuitEventHandler OnQuitDelegate { get; set; }
+        public ApplicationEventsSink_OnReadyEventHandler OnReadyDelegate { get; set; }
+        public ApplicationEventsSink_OnSaveDocumentEventHandler OnSaveDocumentDelegate { get; set; }
+        public ApplicationEventsSink_OnTerminateDocumentEventHandler OnTerminateDocumentDelegate { get; set; }
+        public ApplicationEventsSink_OnTranslateDocumentEventHandler OnTranslateDocumentDelegate { get; set; }
 
         public ApplicationEvents ApplicationEvents { get; private set; }
 
         //Constructor
-        public ApplicationEventsLib(Inventor.Application inventorApp)
-        {
-            this.inventorApp = inventorApp;
-            this.ApplicationEvents = this.inventorApp.ApplicationEvents;
-        }
 
         /// <summary>
         /// Removes all the delegates from the events and nullifies the delegates
         /// </summary>
         public void Deactivate()
         {
-            this.ApplicationEvents.OnActivateDocument -= this.OnActivateDocumentDelegate;
-            this.OnActivateDocumentDelegate = null;
+            ApplicationEvents.OnActivateDocument -= OnActivateDocumentDelegate;
+            OnActivateDocumentDelegate = null;
 
-            this.ApplicationEvents.OnActivateView -= this.OnActivateViewDelegate;
-            this.OnActivateViewDelegate = null;
+            ApplicationEvents.OnActivateView -= OnActivateViewDelegate;
+            OnActivateViewDelegate = null;
 
-            this.ApplicationEvents.OnActiveProjectChanged -= this.OnActiveProjectChangedDelegate;
-            this.OnActiveProjectChangedDelegate = null;
+            ApplicationEvents.OnActiveProjectChanged -= OnActiveProjectChangedDelegate;
+            OnActiveProjectChangedDelegate = null;
 
-            this.ApplicationEvents.OnApplicationOptionChange -=
-                this.OnApplicationOptionChangeDelegate;
-            this.OnApplicationOptionChangeDelegate = null;
+            ApplicationEvents.OnApplicationOptionChange -=
+                OnApplicationOptionChangeDelegate;
+            OnApplicationOptionChangeDelegate = null;
 
-            this.ApplicationEvents.OnCloseDocument -= this.OnCloseDocumentDelegate;
-            this.OnCloseDocumentDelegate = null;
+            ApplicationEvents.OnCloseDocument -= OnCloseDocumentDelegate;
+            OnCloseDocumentDelegate = null;
 
-            this.ApplicationEvents.OnCloseView -= this.OnCloseViewDelegate;
-            this.OnCloseViewDelegate = null;
+            ApplicationEvents.OnCloseView -= OnCloseViewDelegate;
+            OnCloseViewDelegate = null;
 
-            this.ApplicationEvents.OnDeactivateDocument -= this.OnDeactivateDocumentDelegate;
-            this.OnDeactivateDocumentDelegate = null;
+            ApplicationEvents.OnDeactivateDocument -= OnDeactivateDocumentDelegate;
+            OnDeactivateDocumentDelegate = null;
 
-            this.ApplicationEvents.OnDeactivateView -= this.OnDeactivateViewDelegate;
-            this.OnDeactivateViewDelegate = null;
+            ApplicationEvents.OnDeactivateView -= OnDeactivateViewDelegate;
+            OnDeactivateViewDelegate = null;
 
-            this.ApplicationEvents.OnDisplayModeChange -= this.OnDisplayModeChangeDelegate;
-            this.OnDisplayModeChangeDelegate = null;
+            ApplicationEvents.OnDisplayModeChange -= OnDisplayModeChangeDelegate;
+            OnDisplayModeChangeDelegate = null;
 
-            this.ApplicationEvents.OnDocumentChange -= this.OnDocumentChangeDelegate;
-            this.OnDocumentChangeDelegate = null;
+            ApplicationEvents.OnDocumentChange -= OnDocumentChangeDelegate;
+            OnDocumentChangeDelegate = null;
 
-            this.ApplicationEvents.OnInitializeDocument -= this.OnInitializeDocumentDelegate;
-            this.OnInitializeDocumentDelegate = null;
+            ApplicationEvents.OnInitializeDocument -= OnInitializeDocumentDelegate;
+            OnInitializeDocumentDelegate = null;
 
-            this.ApplicationEvents.OnMigrateDocument -= this.OnMigrateDocumentDelegate;
-            this.OnMigrateDocumentDelegate = null;
+            ApplicationEvents.OnMigrateDocument -= OnMigrateDocumentDelegate;
+            OnMigrateDocumentDelegate = null;
 
-            this.ApplicationEvents.OnNewDocument -= this.OnNewDocumentDelegate;
-            this.OnNewDocumentDelegate = null;
+            ApplicationEvents.OnNewDocument -= OnNewDocumentDelegate;
+            OnNewDocumentDelegate = null;
 
-            this.ApplicationEvents.OnNewEditObject -= this.OnNewEditObjectDelegate;
-            this.OnNewEditObjectDelegate = null;
+            ApplicationEvents.OnNewEditObject -= OnNewEditObjectDelegate;
+            OnNewEditObjectDelegate = null;
 
-            this.ApplicationEvents.OnNewView -= this.OnNewViewDelegate;
-            this.OnNewViewDelegate = null;
+            ApplicationEvents.OnNewView -= OnNewViewDelegate;
+            OnNewViewDelegate = null;
 
-            this.ApplicationEvents.OnOpenDocument -= this.OnOpenDocumentDelegate;
-            this.OnOpenDocumentDelegate = null;
+            ApplicationEvents.OnOpenDocument -= OnOpenDocumentDelegate;
+            OnOpenDocumentDelegate = null;
 
-            this.ApplicationEvents.OnQuit -= this.OnQuitDelegate;
-            this.OnQuitDelegate = null;
+            ApplicationEvents.OnQuit -= OnQuitDelegate;
+            OnQuitDelegate = null;
 
-            this.ApplicationEvents.OnReady -= this.OnReadyDelegate;
-            this.OnReadyDelegate = null;
+            ApplicationEvents.OnReady -= OnReadyDelegate;
+            OnReadyDelegate = null;
 
-            this.ApplicationEvents.OnSaveDocument -= this.OnSaveDocumentDelegate;
-            this.OnSaveDocumentDelegate = null;
+            ApplicationEvents.OnSaveDocument -= OnSaveDocumentDelegate;
+            OnSaveDocumentDelegate = null;
 
-            this.ApplicationEvents.OnTerminateDocument -= this.OnTerminateDocumentDelegate;
-            this.OnTerminateDocumentDelegate = null;
+            ApplicationEvents.OnTerminateDocument -= OnTerminateDocumentDelegate;
+            OnTerminateDocumentDelegate = null;
 
-            this.ApplicationEvents.OnTranslateDocument -= this.OnTranslateDocumentDelegate;
-            this.OnTranslateDocumentDelegate = null;
+            ApplicationEvents.OnTranslateDocument -= OnTranslateDocumentDelegate;
+            OnTranslateDocumentDelegate = null;
+        }
+
+        #endregion
+
+        private void Activate()
+        {
+            ApplicationEvents.OnActivateDocument += OnActivateDocumentDelegate;
+
+            ApplicationEvents.OnActivateView += OnActivateViewDelegate;
+
+            ApplicationEvents.OnActiveProjectChanged += OnActiveProjectChangedDelegate;
+
+            ApplicationEvents.OnApplicationOptionChange += OnApplicationOptionChangeDelegate;
+
+            ApplicationEvents.OnCloseDocument += OnCloseDocumentDelegate;
+
+            ApplicationEvents.OnCloseView += OnCloseViewDelegate;
+
+            ApplicationEvents.OnDeactivateDocument += OnDeactivateDocumentDelegate;
+
+            ApplicationEvents.OnDeactivateView += OnDeactivateViewDelegate;
+
+            ApplicationEvents.OnDisplayModeChange += OnDisplayModeChangeDelegate;
+
+            ApplicationEvents.OnDocumentChange += OnDocumentChangeDelegate;
+
+            ApplicationEvents.OnInitializeDocument += OnInitializeDocumentDelegate;
+
+            ApplicationEvents.OnMigrateDocument += OnMigrateDocumentDelegate;
+
+            ApplicationEvents.OnNewDocument += OnNewDocumentDelegate;
+
+            ApplicationEvents.OnNewEditObject += OnNewEditObjectDelegate;
+
+            ApplicationEvents.OnNewView += OnNewViewDelegate;
+
+            ApplicationEvents.OnOpenDocument += OnOpenDocumentDelegate;
+
+            ApplicationEvents.OnQuit += OnQuitDelegate;
+
+            ApplicationEvents.OnReady += OnReadyDelegate;
+
+            ApplicationEvents.OnSaveDocument += OnSaveDocumentDelegate;
+
+            ApplicationEvents.OnTerminateDocument += OnTerminateDocumentDelegate;
+
+            ApplicationEvents.OnTranslateDocument += OnTranslateDocumentDelegate;
         }
     }
 }

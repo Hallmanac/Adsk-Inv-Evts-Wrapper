@@ -64,7 +64,7 @@
     <Compile Include="FileAccessEventsLib.cs" />
     <Compile Include="FileManagerEventsLib.cs" />
     <Compile Include="FileUIEventsLib.cs" />
-    <Compile Include="Interfaces\IInventorEvent.cs" />
+    <Compile Include="ExperimentalStuff\IInventorEvent.cs" />
     <Compile Include="Interfaces\IEventLibraryType.cs" />
     <Compile Include="Interfaces\IMouseEventsLib.cs" />
     <Compile Include="Interfaces\IModelingEventsLib.cs" />
@@ -94,7 +94,7 @@
     <Compile Include="Interfaces\ITriadEventsLib.cs" />
     <Compile Include="Interfaces\IUserInputEventsLib.cs" />
     <Compile Include="Interfaces\IUserInterfaceEventsLib.cs" />
-    <Compile Include="InventorEvent.cs" />
+    <Compile Include="ExperimentalStuff\InventorEvent.cs" />
     <Compile Include="KeyboardEventsLib.cs" />
     <Compile Include="MeasureEventsLib.cs" />
     <Compile Include="ModelingEventsLib.cs" />

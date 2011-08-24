@@ -1,75 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Inventor;
-using System.Windows.Forms;
+﻿using Inventor;
 using InventorEvents2011.Interfaces;
 
 namespace InventorEvents2011
 {
     public class TriadEventsLib : ITriadEventsLib
     {
-        private Inventor.Application invApp;
+        private readonly Application invApp;
+        private InteractionEvents localInteractionEvents;
+        private TriadEvents triadEvents;
 
-        public TriadEventsSink_OnActivateEventHandler OnActivateDelegate
-        { get; set; }
-        public TriadEventsSink_OnEndMoveEventHandler OnEndMoveDelegate
-        { get; set; }
-        public TriadEventsSink_OnEndSequenceEventHandler OnEndSequenceDelegate
-        { get; set; }
-        public TriadEventsSink_OnMoveEventHandler OnMoveDelegate
-        { get; set; }
-        public TriadEventsSink_OnMoveTriadOnlyToggleEventHandler OnMoveTriadOnlyToggleDelegate
-        { get; set; }
+        public TriadEventsLib(Application inventorApp,
+                              InteractionEvents interactionEvents = null)
+        {
+            invApp = inventorApp;
+
+            if (interactionEvents == null) return;
+            localInteractionEvents = interactionEvents;
+            triadEvents = interactionEvents.TriadEvents;
+            Activate();
+        }
+
+        #region ITriadEventsLib Members
+
+        public TriadEventsSink_OnActivateEventHandler OnActivateDelegate { get; set; }
+        public TriadEventsSink_OnEndMoveEventHandler OnEndMoveDelegate { get; set; }
+        public TriadEventsSink_OnEndSequenceEventHandler OnEndSequenceDelegate { get; set; }
+        public TriadEventsSink_OnMoveEventHandler OnMoveDelegate { get; set; }
+        public TriadEventsSink_OnMoveTriadOnlyToggleEventHandler OnMoveTriadOnlyToggleDelegate { get; set; }
+
         public TriadEventsSink_OnSegmentSelectionChangeEventHandler
             OnSegmentSelectionChangeDelegate { get; set; }
-        public TriadEventsSink_OnStartMoveEventHandler OnStartMoveDelegate
-        { get; set; }
-        public TriadEventsSink_OnStartSequenceEventHandler OnStartSequenceDelegate
-        { get; set; }
-        public TriadEventsSink_OnTerminateEventHandler OnTerminateDelegate
-        { get; set; }
 
-        private InteractionEvents localInteractionEvents;
+        public TriadEventsSink_OnStartMoveEventHandler OnStartMoveDelegate { get; set; }
+        public TriadEventsSink_OnStartSequenceEventHandler OnStartSequenceDelegate { get; set; }
+        public TriadEventsSink_OnTerminateEventHandler OnTerminateDelegate { get; set; }
+
         public InteractionEvents LocalInteractionEvents
         {
-            set { this.localInteractionEvents = value; }
+            set { localInteractionEvents = value; }
 
             get
             {
-                if(this.localInteractionEvents == null)
-                {
-                    this.localInteractionEvents =
-                        this.invApp.CommandManager.CreateInteractionEvents();
-                }
-                return this.localInteractionEvents;
+                return localInteractionEvents ??
+                       (localInteractionEvents = invApp.CommandManager.CreateInteractionEvents());
             }
         }
 
-        private TriadEvents triadEvents;
         public TriadEvents TriadEvents
         {
-            get
-            {
-                if(this.triadEvents == null)
-                {
-                    this.triadEvents = this.LocalInteractionEvents.TriadEvents;
-                }
-                return this.triadEvents;
-            }
-        }
-
-        public TriadEventsLib(Inventor.Application inventorApp,
-            InteractionEvents interactionEvents = null)
-        {
-            this.invApp = inventorApp;
-
-            if(interactionEvents != null)
-            {
-                this.localInteractionEvents = interactionEvents;
-                this.triadEvents = interactionEvents.TriadEvents;
-            }
+            get { return triadEvents ?? (triadEvents = LocalInteractionEvents.TriadEvents); }
         }
 
         /// <summary>
@@ -77,32 +56,55 @@ namespace InventorEvents2011
         /// </summary>
         public void Deactivate()
         {
-            this.triadEvents.OnActivate -= this.OnActivateDelegate;
-            this.OnActivateDelegate = null;
+            triadEvents.OnActivate -= OnActivateDelegate;
+            OnActivateDelegate = null;
 
-            this.triadEvents.OnEndMove -= this.OnEndMoveDelegate;
-            this.OnEndMoveDelegate = null;
+            triadEvents.OnEndMove -= OnEndMoveDelegate;
+            OnEndMoveDelegate = null;
 
-            this.triadEvents.OnEndSequence -= this.OnEndSequenceDelegate;
-            this.OnEndSequenceDelegate = null;
+            triadEvents.OnEndSequence -= OnEndSequenceDelegate;
+            OnEndSequenceDelegate = null;
 
-            this.triadEvents.OnMove -= this.OnMoveDelegate;
-            this.OnMoveDelegate = null;
+            triadEvents.OnMove -= OnMoveDelegate;
+            OnMoveDelegate = null;
 
-            this.triadEvents.OnMoveTriadOnlyToggle -= this.OnMoveTriadOnlyToggleDelegate;
-            this.OnMoveTriadOnlyToggleDelegate = null;
+            triadEvents.OnMoveTriadOnlyToggle -= OnMoveTriadOnlyToggleDelegate;
+            OnMoveTriadOnlyToggleDelegate = null;
 
-            this.triadEvents.OnSegmentSelectionChange -= this.OnSegmentSelectionChangeDelegate;
-            this.OnSegmentSelectionChangeDelegate = null;
+            triadEvents.OnSegmentSelectionChange -= OnSegmentSelectionChangeDelegate;
+            OnSegmentSelectionChangeDelegate = null;
 
-            this.triadEvents.OnStartMove -= this.OnStartMoveDelegate;
-            this.OnStartMoveDelegate = null;
+            triadEvents.OnStartMove -= OnStartMoveDelegate;
+            OnStartMoveDelegate = null;
 
-            this.triadEvents.OnStartSequence -= this.OnStartSequenceDelegate;
-            this.OnStartSequenceDelegate = null;
+            triadEvents.OnStartSequence -= OnStartSequenceDelegate;
+            OnStartSequenceDelegate = null;
 
-            this.triadEvents.OnTerminate -= this.OnTerminateDelegate;
-            this.OnTerminateDelegate = null;
+            triadEvents.OnTerminate -= OnTerminateDelegate;
+            OnTerminateDelegate = null;
+        }
+
+        #endregion
+
+        private void Activate()
+        {
+            triadEvents.OnActivate += OnActivateDelegate;
+
+            triadEvents.OnEndMove += OnEndMoveDelegate;
+
+            triadEvents.OnEndSequence += OnEndSequenceDelegate;
+
+            triadEvents.OnMove += OnMoveDelegate;
+
+            triadEvents.OnMoveTriadOnlyToggle += OnMoveTriadOnlyToggleDelegate;
+
+            triadEvents.OnSegmentSelectionChange += OnSegmentSelectionChangeDelegate;
+
+            triadEvents.OnStartMove += OnStartMoveDelegate;
+
+            triadEvents.OnStartSequence += OnStartSequenceDelegate;
+
+            triadEvents.OnTerminate += OnTerminateDelegate;
         }
     }
 }

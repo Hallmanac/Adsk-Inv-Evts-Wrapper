@@ -1,35 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Inventor;
-using System.Windows.Forms;
+﻿using Inventor;
 using InventorEvents2010.Interfaces;
 
 namespace InventorEvents2010
 {
     public class DrawingEventsLib : IDrawingEventsLib
     {
-        private Inventor.Application inventorApp;
+        private Application inventorApp;
 
-        public DrawingEventsSink_OnRetrieveDimensionsEventHandler OnRetrieveDimensionsDelegate
-        { get; set; }
-
-        public DrawingEvents DrawingEvents { get; private set; }
-
-        public DrawingEventsLib(Inventor.Application inventorApp, DrawingDocument drawingDoc)
+        public DrawingEventsLib(Application inventorApp, DrawingDocument drawingDoc)
         {
             this.inventorApp = inventorApp;
-            this.DrawingEvents = drawingDoc.DrawingEvents;
+            DrawingEvents = drawingDoc.DrawingEvents;
+            Activate();
         }
+
+        #region IDrawingEventsLib Members
+
+        public DrawingEventsSink_OnRetrieveDimensionsEventHandler OnRetrieveDimensionsDelegate { get; set; }
+
+        public DrawingEvents DrawingEvents { get; private set; }
 
         /// <summary>
         /// Removes all the delegates from the events and nullifies the delegates
         /// </summary>
         public void Deactivate()
         {
-            this.DrawingEvents.OnRetrieveDimensions -= this.OnRetrieveDimensionsDelegate;
-            this.OnRetrieveDimensionsDelegate = null;
+            DrawingEvents.OnRetrieveDimensions -= OnRetrieveDimensionsDelegate;
+            OnRetrieveDimensionsDelegate = null;
+        }
+
+        #endregion
+
+        private void Activate()
+        {
+            DrawingEvents.OnRetrieveDimensions += OnRetrieveDimensionsDelegate;
         }
     }
 }

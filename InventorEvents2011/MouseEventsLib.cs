@@ -1,69 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Inventor;
-using System.Windows.Forms;
+﻿using Inventor;
 using InventorEvents2011.Interfaces;
 
 namespace InventorEvents2011
 {
     public class MouseEventsLib : IMouseEventsLib
     {
-        private Inventor.Application invApp;
-
-        public MouseEventsSink_OnMouseClickEventHandler OnMouseClickDelegate
-        { get; set; }
-        public MouseEventsSink_OnMouseDoubleClickEventHandler OnMouseDoubleClickDelegate
-        { get; set; }
-        public MouseEventsSink_OnMouseDownEventHandler OnMouseDownDelegate
-        { get; set; }
-        public MouseEventsSink_OnMouseLeaveEventHandler OnMouseLeaveDelegate
-        { get; set; }
-        public MouseEventsSink_OnMouseMoveEventHandler OnMouseMoveDelegate
-        { get; set; }
-        public MouseEventsSink_OnMouseUpEventHandler OnMouseUpDelegate
-        { get; set; }
-
+        private readonly Application invApp;
         private InteractionEvents localInteractionEvents;
+        private MouseEvents mouseEvents;
+
+        public MouseEventsLib(Application inventorApp,
+                              InteractionEvents interactionEvents = null)
+        {
+            invApp = inventorApp;
+
+            if (interactionEvents == null) return;
+            localInteractionEvents = interactionEvents;
+            mouseEvents = interactionEvents.MouseEvents;
+            Activate();
+        }
+
+        #region IMouseEventsLib Members
+
+        public MouseEventsSink_OnMouseClickEventHandler OnMouseClickDelegate { get; set; }
+        public MouseEventsSink_OnMouseDoubleClickEventHandler OnMouseDoubleClickDelegate { get; set; }
+        public MouseEventsSink_OnMouseDownEventHandler OnMouseDownDelegate { get; set; }
+        public MouseEventsSink_OnMouseLeaveEventHandler OnMouseLeaveDelegate { get; set; }
+        public MouseEventsSink_OnMouseMoveEventHandler OnMouseMoveDelegate { get; set; }
+        public MouseEventsSink_OnMouseUpEventHandler OnMouseUpDelegate { get; set; }
+
         public InteractionEvents LocalInteractionEvents
         {
-            set { this.localInteractionEvents = value; }
+            set { localInteractionEvents = value; }
 
             get
             {
-                if(this.localInteractionEvents == null)
-                {
-                    this.localInteractionEvents =
-                        this.invApp.CommandManager.CreateInteractionEvents();
-                }
-                return this.localInteractionEvents;
+                return localInteractionEvents ??
+                       (localInteractionEvents = invApp.CommandManager.CreateInteractionEvents());
             }
         }
 
-        private MouseEvents mouseEvents;
         public MouseEvents MouseEvents
         {
-            get
-            {
-                if(this.mouseEvents == null)
-                {
-                    this.mouseEvents = this.LocalInteractionEvents.MouseEvents;
-                }
-                return this.mouseEvents;
-            }
-        }
-
-        public MouseEventsLib(Inventor.Application inventorApp,
-            InteractionEvents interactionEvents = null)
-        {
-            this.invApp = inventorApp;
-
-            if(interactionEvents != null)
-            {
-                this.localInteractionEvents = interactionEvents;
-                this.mouseEvents = interactionEvents.MouseEvents;
-            }
+            get { return mouseEvents ?? (mouseEvents = LocalInteractionEvents.MouseEvents); }
         }
 
         /// <summary>
@@ -71,23 +50,40 @@ namespace InventorEvents2011
         /// </summary>
         public void Deactivate()
         {
-            this.mouseEvents.OnMouseClick -= this.OnMouseClickDelegate;
-            this.OnMouseClickDelegate = null;
+            mouseEvents.OnMouseClick -= OnMouseClickDelegate;
+            OnMouseClickDelegate = null;
 
-            this.mouseEvents.OnMouseDoubleClick -= this.OnMouseDoubleClickDelegate;
-            this.OnMouseDoubleClickDelegate = null;
+            mouseEvents.OnMouseDoubleClick -= OnMouseDoubleClickDelegate;
+            OnMouseDoubleClickDelegate = null;
 
-            this.mouseEvents.OnMouseDown -= this.OnMouseDownDelegate;
-            this.OnMouseDownDelegate = null;
+            mouseEvents.OnMouseDown -= OnMouseDownDelegate;
+            OnMouseDownDelegate = null;
 
-            this.mouseEvents.OnMouseLeave -= this.OnMouseLeaveDelegate;
-            this.OnMouseLeaveDelegate = null;
+            mouseEvents.OnMouseLeave -= OnMouseLeaveDelegate;
+            OnMouseLeaveDelegate = null;
 
-            this.mouseEvents.OnMouseMove -= this.OnMouseMoveDelegate;
-            this.OnMouseMoveDelegate = null;
+            mouseEvents.OnMouseMove -= OnMouseMoveDelegate;
+            OnMouseMoveDelegate = null;
 
-            this.mouseEvents.OnMouseUp -= this.OnMouseUpDelegate;
-            this.OnMouseUpDelegate = null;
+            mouseEvents.OnMouseUp -= OnMouseUpDelegate;
+            OnMouseUpDelegate = null;
+        }
+
+        #endregion
+
+        private void Activate()
+        {
+            mouseEvents.OnMouseClick += OnMouseClickDelegate;
+
+            mouseEvents.OnMouseDoubleClick += OnMouseDoubleClickDelegate;
+
+            mouseEvents.OnMouseDown += OnMouseDownDelegate;
+
+            mouseEvents.OnMouseLeave += OnMouseLeaveDelegate;
+
+            mouseEvents.OnMouseMove += OnMouseMoveDelegate;
+
+            mouseEvents.OnMouseUp += OnMouseUpDelegate;
         }
     }
 }

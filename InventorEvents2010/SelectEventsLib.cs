@@ -1,67 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Inventor;
-using System.Windows.Forms;
+﻿using Inventor;
 using InventorEvents2010.Interfaces;
 
 namespace InventorEvents2010
 {
     public class SelectEventsLib : ISelectEventsLib
     {
-        private Inventor.Application invApp;
-
-        public SelectEventsSink_OnPreSelectEventHandler OnPreSelectDelegate
-        { get; set; }
-        public SelectEventsSink_OnPreSelectMouseMoveEventHandler OnPreSelectMouseMoveDelegate
-        { get; set; }
-        public SelectEventsSink_OnSelectEventHandler OnSelectDelegate
-        { get; set; }
-        public SelectEventsSink_OnStopPreSelectEventHandler OnStopPreSelectDelegate
-        { get; set; }
-        public SelectEventsSink_OnUnSelectEventHandler OnUnSelectDelegate
-        { get; set; }
-
+        private readonly Application invApp;
         private InteractionEvents localInteractionEvents;
+        private SelectEvents selectEvents;
+
+        public SelectEventsLib(Application inventorApp,
+                               InteractionEvents interactionEvents = null)
+        {
+            invApp = inventorApp;
+
+            if (interactionEvents == null) return;
+            localInteractionEvents = interactionEvents;
+            selectEvents = interactionEvents.SelectEvents;
+            Activate();
+        }
+
+        #region ISelectEventsLib Members
+
+        public SelectEventsSink_OnPreSelectEventHandler OnPreSelectDelegate { get; set; }
+        public SelectEventsSink_OnPreSelectMouseMoveEventHandler OnPreSelectMouseMoveDelegate { get; set; }
+        public SelectEventsSink_OnSelectEventHandler OnSelectDelegate { get; set; }
+        public SelectEventsSink_OnStopPreSelectEventHandler OnStopPreSelectDelegate { get; set; }
+        public SelectEventsSink_OnUnSelectEventHandler OnUnSelectDelegate { get; set; }
+
         public InteractionEvents LocalInteractionEvents
         {
-            set { this.localInteractionEvents = value; }
-            
-            get 
+            set { localInteractionEvents = value; }
+
+            get
             {
-                if(this.localInteractionEvents == null)
-                {
-                    this.localInteractionEvents =
-                        this.invApp.CommandManager.CreateInteractionEvents();
-                }
-                return this.localInteractionEvents; 
+                return localInteractionEvents ??
+                       (localInteractionEvents = invApp.CommandManager.CreateInteractionEvents());
             }
         }
 
-        private SelectEvents selectEvents;
         public SelectEvents SelectEvents
         {
-            get 
-            {
-                if(this.selectEvents == null)
-                {
-                    this.selectEvents = this.LocalInteractionEvents.SelectEvents;
-                }
-                return this.selectEvents; 
-            }
-        }
-
-        public SelectEventsLib(Inventor.Application inventorApp, 
-            InteractionEvents interactionEvents = null)
-        {
-            this.invApp = inventorApp;
-            
-            if (interactionEvents != null)
-            {
-                this.localInteractionEvents = interactionEvents;
-                this.selectEvents = interactionEvents.SelectEvents;                   
-            }
+            get { return selectEvents ?? (selectEvents = LocalInteractionEvents.SelectEvents); }
         }
 
         /// <summary>
@@ -69,20 +49,35 @@ namespace InventorEvents2010
         /// </summary>
         public void Deactivate()
         {
-            this.selectEvents.OnPreSelect -= this.OnPreSelectDelegate;
-            this.OnPreSelectDelegate = null;
+            selectEvents.OnPreSelect -= OnPreSelectDelegate;
+            OnPreSelectDelegate = null;
 
-            this.selectEvents.OnPreSelectMouseMove -= this.OnPreSelectMouseMoveDelegate;
-            this.OnPreSelectMouseMoveDelegate = null;
+            selectEvents.OnPreSelectMouseMove -= OnPreSelectMouseMoveDelegate;
+            OnPreSelectMouseMoveDelegate = null;
 
-            this.selectEvents.OnSelect -= this.OnSelectDelegate;
-            this.OnSelectDelegate = null;
+            selectEvents.OnSelect -= OnSelectDelegate;
+            OnSelectDelegate = null;
 
-            this.selectEvents.OnStopPreSelect -= this.OnStopPreSelectDelegate;
-            this.OnStopPreSelectDelegate = null;
+            selectEvents.OnStopPreSelect -= OnStopPreSelectDelegate;
+            OnStopPreSelectDelegate = null;
 
-            this.selectEvents.OnUnSelect -= this.OnUnSelectDelegate;
-            this.OnUnSelectDelegate = null;
+            selectEvents.OnUnSelect -= OnUnSelectDelegate;
+            OnUnSelectDelegate = null;
+        }
+
+        #endregion
+
+        private void Activate()
+        {
+            selectEvents.OnPreSelect += OnPreSelectDelegate;
+
+            selectEvents.OnPreSelectMouseMove += OnPreSelectMouseMoveDelegate;
+
+            selectEvents.OnSelect += OnSelectDelegate;
+
+            selectEvents.OnStopPreSelect += OnStopPreSelectDelegate;
+
+            selectEvents.OnUnSelect += OnUnSelectDelegate;
         }
     }
 }

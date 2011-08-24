@@ -1,32 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Inventor;
-using System.Windows.Forms;
+﻿using Inventor;
 using InventorEvents2011.Interfaces;
 
 namespace InventorEvents2011
 {
     public class ComboBoxEventsLib : IComboBoxEventsLib
     {
-        public ComboBoxDefinitionSink_OnSelectEventHandler OnSelectDelegate
-        { get; set; }
-
-        public ComboBoxDefinition ComboBoxDefinition { get; private set; }
-
         public ComboBoxEventsLib(ComboBoxDefinition comboBoxDefinition)
         {
-            this.ComboBoxDefinition = comboBoxDefinition;
+            ComboBoxDefinition = comboBoxDefinition;
+            Activate();
         }
+
+        #region IComboBoxEventsLib Members
+
+        public ComboBoxDefinitionSink_OnSelectEventHandler OnSelectDelegate { get; set; }
+
+        public ComboBoxDefinition ComboBoxDefinition { get; private set; }
 
         /// <summary>
         /// Removes all the delegates from the events and nullifies the delegates
         /// </summary>
         public void Deactivate()
         {
-            this.ComboBoxDefinition.OnSelect -= this.OnSelectDelegate;
-            this.OnSelectDelegate = null;
+            ComboBoxDefinition.OnSelect -= OnSelectDelegate;
+            OnSelectDelegate = null;
+        }
+
+        #endregion
+
+        private void Activate()
+        {
+            ComboBoxDefinition.OnSelect += OnSelectDelegate;
         }
     }
 }

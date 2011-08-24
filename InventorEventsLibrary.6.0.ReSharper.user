@@ -2,9 +2,61 @@
   <RecentFiles>
     <RecentFiles>
       <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:MouseEventsLib.cs" caret="1870" fromTop="33" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/d:Interfaces/f:IApplicationEventsLib.cs" caret="0" fromTop="0" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:AssemblyEventsLib.cs" caret="408" fromTop="13" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:AssemblyEventsLib.cs" caret="0" fromTop="0" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:ApplicationEventsLib.cs" caret="0" fromTop="0" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:ApplicationEventsLib.cs" caret="0" fromTop="0" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:BrowserPaneEventsLib.cs" caret="796" fromTop="22" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:BrowserPaneEventsLib.cs" caret="158" fromTop="6" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:BrowserPanesEventsLib.cs" caret="1450" fromTop="38" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:BrowserPanesEventsLib .cs" caret="1086" fromTop="28" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:ButtonEventsLib.cs" caret="585" fromTop="18" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:ButtonEventsLib.cs" caret="636" fromTop="20" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:ChangeDefinitionEventsLib.cs" caret="561" fromTop="17" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:ChangeDefinitionEventsLib.cs" caret="561" fromTop="17" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:ChangeProcessorEventsLib.cs" caret="1281" fromTop="32" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:ChangeProcessorEventsLib.cs" caret="362" fromTop="11" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:ComboBoxEventsLib.cs" caret="543" fromTop="17" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:ComboBoxEventsLib.cs" caret="543" fromTop="17" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:DocumentEventsLib.cs" caret="1171" fromTop="1" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:DocumentEventsLib.cs" caret="1171" fromTop="4" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:DrawingEventsLib.cs" caret="652" fromTop="20" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:DrawingEventsLib.cs" caret="652" fromTop="20" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:DrawingViewEventsLib.cs" caret="707" fromTop="21" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:DrawingViewEventsLib.cs" caret="707" fromTop="21" />
     </RecentFiles>
     <RecentEdits>
-      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:MouseEventsLib.cs" caret="1847" fromTop="32" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:BrowserPaneEventsLib.cs" caret="796" fromTop="29" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:BrowserPaneEventsLib.cs" caret="796" fromTop="36" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:AssemblyEventsLib.cs" caret="408" fromTop="13" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:BrowserPaneEventsLib.cs" caret="796" fromTop="22" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:BrowserPaneEventsLib.cs" caret="796" fromTop="15" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:BrowserPanesEventsLib.cs" caret="1086" fromTop="10" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:BrowserPanesEventsLib .cs" caret="1086" fromTop="32" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:BrowserPanesEventsLib .cs" caret="1086" fromTop="26" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:BrowserPanesEventsLib.cs" caret="1086" fromTop="0" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:ButtonEventsLib.cs" caret="981" fromTop="32" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:ButtonEventsLib.cs" caret="762" fromTop="27" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:ButtonEventsLib.cs" caret="518" fromTop="14" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:ButtonEventsLib.cs" caret="585" fromTop="18" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:ButtonEventsLib.cs" caret="611" fromTop="18" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:ChangeDefinitionEventsLib.cs" caret="561" fromTop="17" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:ChangeDefinitionEventsLib.cs" caret="561" fromTop="17" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:ChangeProcessorEventsLib.cs" caret="879" fromTop="16" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:ChangeProcessorEventsLib.cs" caret="879" fromTop="8" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:ChangeProcessorEventsLib.cs" caret="879" fromTop="17" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:ChangeProcessorEventsLib.cs" caret="879" fromTop="4" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:ComboBoxEventsLib.cs" caret="543" fromTop="17" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:ComboBoxEventsLib.cs" caret="543" fromTop="17" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:DocumentEventsLib.cs" caret="1171" fromTop="1" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:DocumentEventsLib.cs" caret="1171" fromTop="16" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:DocumentEventsLib.cs" caret="1171" fromTop="4" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:DocumentEventsLib.cs" caret="1171" fromTop="1" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:DrawingEventsLib.cs" caret="652" fromTop="20" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:DrawingEventsLib.cs" caret="652" fromTop="20" />
+      <File id="6C988887-6D50-4B4E-A3AB-59B2561D10E2/f:DrawingViewEventsLib.cs" caret="707" fromTop="14" />
+      <File id="44957CFA-8E5B-4848-A909-AD1A842EA555/f:DrawingViewEventsLib.cs" caret="707" fromTop="4" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
@@ -26,7 +78,80 @@
   </SettingsComponent>
   <CompletionStatisticsManager>
     <ItemStatistics item="CSharpCodeCompletionContext">
-      <Item value="this" priority="31" />
+      <Item value="this" priority="447" />
+      <Item value="ApplicationEventsSink_OnActivateDocumentEventHandler" priority="28" />
+      <Item value="CreateDelegate" priority="22" />
+      <Item value="return" priority="31" />
+      <Item value="handlingCode" priority="31" />
+      <Item value="kEventHandled" priority="16" />
+      <Item value="ApplicationEvents" priority="31" />
+      <Item value="AppEvents_OnActivateDoc`0" priority="32" />
+      <Item value="void" priority="31" />
+      <Item value="Activate`0" priority="95" />
+      <Item value="ApplicationEventsSink_OnActivateDocumentEventHandler`0" priority="31" />
+      <Item value="OnActivateDelegate" priority="31" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:InventorEvents2010.ApplicationEventsLib">
+      <Item value="ApplicationEvents" priority="26" />
+      <Item value="OnActivateDocumentDelegate" priority="54" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Inventor.ApplicationEvents">
+      <Item value="OnActivateDocument" priority="53" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:InventorEvents2011.ButtonEventsLib">
+      <Item value="ButtonDefinition" priority="26" />
+      <Item value="OnHelpDelegate" priority="54" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Inventor.ButtonDefinition">
+      <Item value="OnHelp" priority="26" />
+      <Item value="OnExecute" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:InventorEvents2010.ButtonEventsLib">
+      <Item value="ButtonDef" priority="26" />
+      <Item value="OnExecuteDelegate" priority="27" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:InventorEvents2010.ChangeDefinitionEventsLib">
+      <Item value="ChangeDefinition" priority="26" />
+      <Item value="OnReplayDelegate" priority="27" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Inventor.ChangeDefinition">
+      <Item value="OnReplay" priority="53" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:InventorEvents2011.ChangeDefinitionEventsLib">
+      <Item value="ChangeDefinition" priority="26" />
+      <Item value="OnReplayDelegate" priority="27" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:InventorEvents2010.ComboBoxEventsLib">
+      <Item value="ComboBoxDefinition" priority="26" />
+      <Item value="OnSelectDelegate" priority="27" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Inventor.ComboBoxDefinition">
+      <Item value="OnSelect" priority="53" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:InventorEvents2011.ComboBoxEventsLib">
+      <Item value="ComboBoxDefinition" priority="26" />
+      <Item value="OnSelectDelegate" priority="27" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:InventorEvents2010.DrawingEventsLib">
+      <Item value="DrawingEvents" priority="26" />
+      <Item value="OnRetrieveDimensionsDelegate" priority="27" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Inventor.DrawingEvents">
+      <Item value="OnRetrieveDimensions" priority="49" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:InventorEvents2011.DrawingEventsLib">
+      <Item value="OnRetrieveDimensionsDelegate" priority="27" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:InventorEvents2010.DrawingViewEventsLib">
+      <Item value="DrawingViewEvents" priority="26" />
+      <Item value="OnViewUpdateDelegate" priority="27" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Inventor.DrawingViewEvents">
+      <Item value="OnViewUpdate" priority="53" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:InventorEvents2011.DrawingViewEventsLib">
+      <Item value="DrawingViewEvents" priority="26" />
+      <Item value="OnViewUpdateDelegate" priority="27" />
     </ItemStatistics>
   </CompletionStatisticsManager>
 </Configuration>

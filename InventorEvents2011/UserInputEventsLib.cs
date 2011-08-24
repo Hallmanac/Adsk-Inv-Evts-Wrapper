@@ -1,85 +1,98 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Inventor;
-using System.Windows.Forms;
+﻿using Inventor;
 using InventorEvents2011.Interfaces;
 
 namespace InventorEvents2011
 {
     public class UserInputEventsLib : IUserInputEventsLib
     {
-        private Inventor.Application inventorApp;
+        public UserInputEventsLib(Application inventorApp)
+        {
+            UserInputEvents = inventorApp.CommandManager.UserInputEvents;
+            Activate();
+        }
 
-        public UserInputEventsSink_OnActivateCommandEventHandler OnActivateCommandDelegate
-        { get; set; }
-        public UserInputEventsSink_OnContextMenuEventHandler OnContextMenuDelegate
-        { get; set; }
-        public UserInputEventsSink_OnDoubleClickEventHandler OnDoubleClickDelegate
-        { get; set; }
-        public UserInputEventsSink_OnDragEventHandler OnDragDelegate
-        { get; set; }
-        public UserInputEventsSink_OnStartCommandEventHandler OnStartCommandDelegate
-        { get; set; }/*Use with 2010*/
-        public UserInputEventsSink_OnStopCommandEventHandler OnStopCommandDelegate
-        { get; set; }/*Use with 2010*/
-        public UserInputEventsSink_OnTerminateCommandEventHandler OnTerminateCommandDelegate
-        { get; set; }
-        public UserInputEventsSink_OnPreSelectEventHandler OnPreSelectDelegate
-        { get; set; }/*Use with 2011*/
-        public UserInputEventsSink_OnSelectEventHandler OnSelectDelegate
-        { get; set; }/*Use with 2011*/
-        public UserInputEventsSink_OnStopPreSelectEventHandler OnStopPreSelectDelegate
-        { get; set; }/*Use with 2011*/
-        public UserInputEventsSink_OnUnSelectEventHandler OnUnSelectDelegate
-        { get; set; }/*Use with 2011*/
+        #region IUserInputEventsLib Members
+
+        public UserInputEventsSink_OnActivateCommandEventHandler OnActivateCommandDelegate { get; set; }
+        public UserInputEventsSink_OnContextMenuEventHandler OnContextMenuDelegate { get; set; }
+        public UserInputEventsSink_OnDoubleClickEventHandler OnDoubleClickDelegate { get; set; }
+        public UserInputEventsSink_OnDragEventHandler OnDragDelegate { get; set; }
+        public UserInputEventsSink_OnStartCommandEventHandler OnStartCommandDelegate { get; set; }
+        /*Use with 2010*/
+        public UserInputEventsSink_OnStopCommandEventHandler OnStopCommandDelegate { get; set; }
+        /*Use with 2010*/
+        public UserInputEventsSink_OnTerminateCommandEventHandler OnTerminateCommandDelegate { get; set; }
+        public UserInputEventsSink_OnPreSelectEventHandler OnPreSelectDelegate { get; set; } /*Use with 2011*/
+        public UserInputEventsSink_OnSelectEventHandler OnSelectDelegate { get; set; } /*Use with 2011*/
+        public UserInputEventsSink_OnStopPreSelectEventHandler OnStopPreSelectDelegate { get; set; } /*Use with 2011*/
+        public UserInputEventsSink_OnUnSelectEventHandler OnUnSelectDelegate { get; set; } /*Use with 2011*/
 
         public UserInputEvents UserInputEvents { get; private set; }
-
-        public UserInputEventsLib(Inventor.Application inventorApp)
-        {
-            this.inventorApp = inventorApp;
-            this.UserInputEvents = inventorApp.CommandManager.UserInputEvents;
-        }
 
         /// <summary>
         /// Removes all the delegates from the events and nullifies the delegates
         /// </summary>
         public void Deactivate()
         {
-            this.UserInputEvents.OnActivateCommand -= this.OnActivateCommandDelegate;
-            this.OnActivateCommandDelegate = null;
+            UserInputEvents.OnActivateCommand -= OnActivateCommandDelegate;
+            OnActivateCommandDelegate = null;
 
-            this.UserInputEvents.OnContextMenu -= this.OnContextMenuDelegate;
-            this.OnContextMenuDelegate = null;
+            UserInputEvents.OnContextMenu -= OnContextMenuDelegate;
+            OnContextMenuDelegate = null;
 
-            this.UserInputEvents.OnDoubleClick -= this.OnDoubleClickDelegate;
-            this.OnDoubleClickDelegate = null;
+            UserInputEvents.OnDoubleClick -= OnDoubleClickDelegate;
+            OnDoubleClickDelegate = null;
 
-            this.UserInputEvents.OnDrag -= this.OnDragDelegate;
-            this.OnDragDelegate = null;
+            UserInputEvents.OnDrag -= OnDragDelegate;
+            OnDragDelegate = null;
 
-            this.UserInputEvents.OnPreSelect -= this.OnPreSelectDelegate;
-            this.OnPreSelectDelegate = null;
+            UserInputEvents.OnPreSelect -= OnPreSelectDelegate;
+            OnPreSelectDelegate = null;
 
-            this.UserInputEvents.OnSelect -= this.OnSelectDelegate;
-            this.OnSelectDelegate = null;
+            UserInputEvents.OnSelect -= OnSelectDelegate;
+            OnSelectDelegate = null;
 
-            this.UserInputEvents.OnStartCommand -= this.OnStartCommandDelegate;
-            this.OnStartCommandDelegate = null;
+            UserInputEvents.OnStartCommand -= OnStartCommandDelegate;
+            OnStartCommandDelegate = null;
 
-            this.UserInputEvents.OnStopCommand -= this.OnStopCommandDelegate;
-            this.OnStopCommandDelegate = null;
+            UserInputEvents.OnStopCommand -= OnStopCommandDelegate;
+            OnStopCommandDelegate = null;
 
-            this.UserInputEvents.OnStopPreSelect -= this.OnStopPreSelectDelegate;
-            this.OnStopPreSelectDelegate = null;
+            UserInputEvents.OnStopPreSelect -= OnStopPreSelectDelegate;
+            OnStopPreSelectDelegate = null;
 
-            this.UserInputEvents.OnTerminateCommand -= this.OnTerminateCommandDelegate;
-            this.OnTerminateCommandDelegate = null;
+            UserInputEvents.OnTerminateCommand -= OnTerminateCommandDelegate;
+            OnTerminateCommandDelegate = null;
 
-            this.UserInputEvents.OnUnSelect -= this.OnUnSelectDelegate;
-            this.OnUnSelectDelegate = null;
+            UserInputEvents.OnUnSelect -= OnUnSelectDelegate;
+            OnUnSelectDelegate = null;
+        }
+
+        #endregion
+
+        private void Activate()
+        {
+            UserInputEvents.OnActivateCommand += OnActivateCommandDelegate;
+
+            UserInputEvents.OnContextMenu += OnContextMenuDelegate;
+
+            UserInputEvents.OnDoubleClick += OnDoubleClickDelegate;
+
+            UserInputEvents.OnDrag += OnDragDelegate;
+
+            UserInputEvents.OnPreSelect += OnPreSelectDelegate;
+
+            UserInputEvents.OnSelect += OnSelectDelegate;
+
+            UserInputEvents.OnStartCommand += OnStartCommandDelegate;
+
+            UserInputEvents.OnStopCommand += OnStopCommandDelegate;
+
+            UserInputEvents.OnStopPreSelect += OnStopPreSelectDelegate;
+
+            UserInputEvents.OnTerminateCommand += OnTerminateCommandDelegate;
+
+            UserInputEvents.OnUnSelect += OnUnSelectDelegate;
         }
     }
 }

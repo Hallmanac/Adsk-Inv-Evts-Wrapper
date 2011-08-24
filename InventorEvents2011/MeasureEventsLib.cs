@@ -1,61 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Inventor;
-using System.Windows.Forms;
+﻿using Inventor;
 using InventorEvents2011.Interfaces;
 
 namespace InventorEvents2011
 {
     public class MeasureEventsLib : IMeasureEventsLib
     {
-        private Inventor.Application invApp;
-
-        public MeasureEventsSink_OnMeasureEventHandler OnMeasureDelegate
-        { get; set; }
-        public MeasureEventsSink_OnSelectParameterEventHandler OnSelectParameterDelegate
-        { get; set; }
-
+        private readonly Application invApp;
         private InteractionEvents localInteractionEvents;
+        private MeasureEvents measureEvents;
+
+        public MeasureEventsLib(Application inventorApp,
+                                InteractionEvents interactionEvents)
+        {
+            invApp = inventorApp;
+
+            if (interactionEvents == null) return;
+            localInteractionEvents = interactionEvents;
+            measureEvents = interactionEvents.MeasureEvents;
+            Activate();
+        }
+
+        #region IMeasureEventsLib Members
+
+        public MeasureEventsSink_OnMeasureEventHandler OnMeasureDelegate { get; set; }
+        public MeasureEventsSink_OnSelectParameterEventHandler OnSelectParameterDelegate { get; set; }
+
         public InteractionEvents LocalInteractionEvents
         {
-            set { this.localInteractionEvents = value; }
+            set { localInteractionEvents = value; }
 
             get
             {
-                if(this.localInteractionEvents == null)
-                {
-                    this.localInteractionEvents =
-                        this.invApp.CommandManager.CreateInteractionEvents();
-                }
-                return this.localInteractionEvents;
+                return localInteractionEvents ??
+                       (localInteractionEvents = invApp.CommandManager.CreateInteractionEvents());
             }
         }
 
-        private MeasureEvents measureEvents;
         public MeasureEvents MeasureEvents
         {
-            get
-            {
-                if(this.measureEvents == null)
-                {
-                    this.measureEvents = this.LocalInteractionEvents.MeasureEvents;
-                }
-                return this.measureEvents;
-            }
-        }
-
-        public MeasureEventsLib(Inventor.Application inventorApp,
-            InteractionEvents interactionEvents)
-        {
-            this.invApp = inventorApp;
-
-            if(interactionEvents != null)
-            {
-                this.localInteractionEvents = interactionEvents;
-                this.measureEvents = interactionEvents.MeasureEvents;
-            }
+            get { return measureEvents ?? (measureEvents = LocalInteractionEvents.MeasureEvents); }
         }
 
         /// <summary>
@@ -63,11 +46,19 @@ namespace InventorEvents2011
         /// </summary>
         public void Deactivate()
         {
-            this.measureEvents.OnMeasure -= this.OnMeasureDelegate;
-            this.OnMeasureDelegate = null;
+            measureEvents.OnMeasure -= OnMeasureDelegate;
+            OnMeasureDelegate = null;
 
-            this.measureEvents.OnSelectParameter -= this.OnSelectParameterDelegate;
-            this.OnSelectParameterDelegate = null;
+            measureEvents.OnSelectParameter -= OnSelectParameterDelegate;
+            OnSelectParameterDelegate = null;
+        }
+
+        #endregion
+
+        private void Activate()
+        {
+            MeasureEvents.OnMeasure += OnMeasureDelegate;
+            MeasureEvents.OnSelectParameter += OnSelectParameterDelegate;
         }
     }
 }

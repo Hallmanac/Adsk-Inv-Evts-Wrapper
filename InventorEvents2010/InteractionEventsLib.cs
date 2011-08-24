@@ -1,46 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Inventor;
-using System.Windows.Forms;
+﻿using Inventor;
 using InventorEvents2010.Interfaces;
 
 namespace InventorEvents2010
 {
     public class InteractionEventsLib : IInteractionEventsLib
     {
-        private Inventor.Application inventorApp;
-
-        public InteractionEventsSink_OnActivateEventHandler OnActivateDelegate
-        { get; set; }
-        public InteractionEventsSink_OnHelpEventHandler OnHelpDelegate
-        { get; set; }
-        public InteractionEventsSink_OnResumeEventHandler OnResumeDelegate
-        { get; set; }
-        public InteractionEventsSink_OnSuspendEventHandler OnSuspendDelegate
-        { get; set; }
-        public InteractionEventsSink_OnTerminateEventHandler OnTerminateDelegate
-        { get; set; }
-
+        private readonly Application inventorApp;
         private InteractionEvents interactionEvents;
+
+        public InteractionEventsLib(Application inventorApp)
+        {
+            this.inventorApp = inventorApp;
+            Activate();
+        }
+
+        #region IInteractionEventsLib Members
+
+        public InteractionEventsSink_OnActivateEventHandler OnActivateDelegate { get; set; }
+        public InteractionEventsSink_OnHelpEventHandler OnHelpDelegate { get; set; }
+        public InteractionEventsSink_OnResumeEventHandler OnResumeDelegate { get; set; }
+        public InteractionEventsSink_OnSuspendEventHandler OnSuspendDelegate { get; set; }
+        public InteractionEventsSink_OnTerminateEventHandler OnTerminateDelegate { get; set; }
+
         public InteractionEvents InteractionEvents
         {
             set { interactionEvents = value; }
 
-            get
-            {
-                if(interactionEvents == null)
-                {
-                    interactionEvents = this.inventorApp.CommandManager.CreateInteractionEvents();
-                }
-                return interactionEvents;
-            }
-        }
-
-        public InteractionEventsLib(Inventor.Application inventorApp)
-        {
-            this.inventorApp = inventorApp;
+            get { return interactionEvents ?? (interactionEvents = inventorApp.CommandManager.CreateInteractionEvents()); }
         }
 
         /// <summary>
@@ -48,20 +34,35 @@ namespace InventorEvents2010
         /// </summary>
         public void Deactivate()
         {
-            this.InteractionEvents.OnActivate -= this.OnActivateDelegate;
-            this.OnActivateDelegate = null;
+            InteractionEvents.OnActivate -= OnActivateDelegate;
+            OnActivateDelegate = null;
 
-            this.InteractionEvents.OnHelp -= this.OnHelpDelegate;
-            this.OnHelpDelegate = null;
+            InteractionEvents.OnHelp -= OnHelpDelegate;
+            OnHelpDelegate = null;
 
-            this.InteractionEvents.OnResume -= this.OnResumeDelegate;
-            this.OnResumeDelegate = null;
+            InteractionEvents.OnResume -= OnResumeDelegate;
+            OnResumeDelegate = null;
 
-            this.InteractionEvents.OnSuspend -= this.OnSuspendDelegate;
-            this.OnSuspendDelegate = null;
+            InteractionEvents.OnSuspend -= OnSuspendDelegate;
+            OnSuspendDelegate = null;
 
-            this.InteractionEvents.OnTerminate -= this.OnTerminateDelegate;
-            this.OnTerminateDelegate = null;
+            InteractionEvents.OnTerminate -= OnTerminateDelegate;
+            OnTerminateDelegate = null;
+        }
+
+        #endregion
+
+        private void Activate()
+        {
+            interactionEvents.OnActivate += OnActivateDelegate;
+
+            interactionEvents.OnHelp += OnHelpDelegate;
+
+            interactionEvents.OnResume += OnResumeDelegate;
+
+            interactionEvents.OnSuspend += OnSuspendDelegate;
+
+            interactionEvents.OnTerminate += OnTerminateDelegate;
         }
     }
 }

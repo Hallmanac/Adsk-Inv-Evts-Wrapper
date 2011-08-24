@@ -1,60 +1,69 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Inventor;
-using System.Windows.Forms;
+﻿using Inventor;
 using InventorEvents2010.Interfaces;
 
 namespace InventorEvents2010
 {
     public class SketchEventsLib : ISketchEventsLib
     {
-        private Inventor.Application inventorApp;
+        private Application inventorApp;
 
-        public SketchEventsSink_OnDeleteEventHandler OnDeleteDelegate
-        { get; set; }
-        public SketchEventsSink_OnNewSketchEventHandler OnNewSketchDelegate
-        { get; set; }
-        public SketchEventsSink_OnNewSketch3DEventHandler OnNewSketch3DDelegate
-        { get; set; }
-        public SketchEventsSink_OnSketch3DChangeEventHandler OnSketch3DChangeDelegate
-        { get; set; }
-        public SketchEventsSink_OnSketch3DSolveEventHandler OnSketch3DSolveDelegate
-        { get; set; }
-        public SketchEventsSink_OnSketchChangeEventHandler OnSketchChangeDelegate
-        { get; set; }
-
-        public SketchEvents SketchEvents { get; private set; }
-
-        public SketchEventsLib(Inventor.Application inventorApp)
+        public SketchEventsLib(Application inventorApp)
         {
             this.inventorApp = inventorApp;
-            this.SketchEvents = inventorApp.SketchEvents;
+            SketchEvents = inventorApp.SketchEvents;
+            Activate();
         }
+
+        #region ISketchEventsLib Members
+
+        public SketchEventsSink_OnDeleteEventHandler OnDeleteDelegate { get; set; }
+        public SketchEventsSink_OnNewSketchEventHandler OnNewSketchDelegate { get; set; }
+        public SketchEventsSink_OnNewSketch3DEventHandler OnNewSketch3DDelegate { get; set; }
+        public SketchEventsSink_OnSketch3DChangeEventHandler OnSketch3DChangeDelegate { get; set; }
+        public SketchEventsSink_OnSketch3DSolveEventHandler OnSketch3DSolveDelegate { get; set; }
+        public SketchEventsSink_OnSketchChangeEventHandler OnSketchChangeDelegate { get; set; }
+
+        public SketchEvents SketchEvents { get; private set; }
 
         /// <summary>
         /// Removes all the delegates from the events and nullifies the delegates
         /// </summary>
         public void Deactivate()
         {
-            this.SketchEvents.OnDelete -= this.OnDeleteDelegate;
-            this.OnDeleteDelegate = null;
+            SketchEvents.OnDelete -= OnDeleteDelegate;
+            OnDeleteDelegate = null;
 
-            this.SketchEvents.OnNewSketch -= this.OnNewSketchDelegate;
-            this.OnNewSketchDelegate = null;
+            SketchEvents.OnNewSketch -= OnNewSketchDelegate;
+            OnNewSketchDelegate = null;
 
-            this.SketchEvents.OnNewSketch3D -= this.OnNewSketch3DDelegate;
-            this.OnNewSketch3DDelegate = null;
+            SketchEvents.OnNewSketch3D -= OnNewSketch3DDelegate;
+            OnNewSketch3DDelegate = null;
 
-            this.SketchEvents.OnSketch3DChange -= this.OnSketch3DChangeDelegate;
-            this.OnSketch3DChangeDelegate = null;
+            SketchEvents.OnSketch3DChange -= OnSketch3DChangeDelegate;
+            OnSketch3DChangeDelegate = null;
 
-            this.SketchEvents.OnSketch3DSolve -= this.OnSketch3DSolveDelegate;
-            this.OnSketch3DSolveDelegate = null;
+            SketchEvents.OnSketch3DSolve -= OnSketch3DSolveDelegate;
+            OnSketch3DSolveDelegate = null;
 
-            this.SketchEvents.OnSketchChange -= this.OnSketchChangeDelegate;
-            this.OnSketchChangeDelegate = null;
+            SketchEvents.OnSketchChange -= OnSketchChangeDelegate;
+            OnSketchChangeDelegate = null;
+        }
+
+        #endregion
+
+        private void Activate()
+        {
+            SketchEvents.OnDelete += OnDeleteDelegate;
+
+            SketchEvents.OnNewSketch += OnNewSketchDelegate;
+
+            SketchEvents.OnNewSketch3D += OnNewSketch3DDelegate;
+
+            SketchEvents.OnSketch3DChange += OnSketch3DChangeDelegate;
+
+            SketchEvents.OnSketch3DSolve += OnSketch3DSolveDelegate;
+
+            SketchEvents.OnSketchChange += OnSketchChangeDelegate;
         }
     }
 }
