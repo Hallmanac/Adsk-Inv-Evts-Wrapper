@@ -10,10 +10,8 @@ Basically, inside this Events Wrapper solution there is a namespace for each of 
 
 The main "event group" class surfaces all of the wrapped events for that particular group. This allows for the consumer to do one instantiation to access multiple events of the same group hierarchy. Of course, the other way one could consume it is by directly instantiating the wrapped event class itself.
 
-A good example of instantiation (i.e. use) of this library is in the project named "EventsTestAddIn" which is an Inventor Add-in project located in the solution. Go into the "StandardAddInServer.cs" file and look under the "Activate" method to find the two example implementations.
-
 I have created a project for each release of Inventor due to the fact that there were minor changes between some of them.
 
-Of course you'll see that I'm far from done with this. I've only completed wrapping a couple of the event groups. Once you understand what's going on, it's actually pretty repetetive and boring to code out so I do it when I have a spare hour here or there.
+Of course you'll see that I'm far from done with this. I've wrapped the events group for Inventor 2010 and 2011 but still need to go through the more recent API's. Once you understand what's going on, it's actually pretty repetetive and boring to code out so I do it when I have a spare hour here or there.
 
 For questions, submit an "issue" in this repository.
