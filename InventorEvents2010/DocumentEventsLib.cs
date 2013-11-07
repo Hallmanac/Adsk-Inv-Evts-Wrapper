@@ -5,11 +5,8 @@ namespace InventorEvents2010
 {
     public class DocumentEventsLib : IDocumentEventsLib
     {
-        private Application inventorApp;
-
-        public DocumentEventsLib(Application inventorApp, Document document)
+        public DocumentEventsLib(Document document)
         {
-            this.inventorApp = inventorApp;
             DocumentEvents = document.DocumentEvents;
             Activate();
         }

@@ -13,3 +13,10 @@ X:\Visual Studio Workspace\InventorEventsLibrary\InventorEvents2010\bin\Release\
 X:\Visual Studio Workspace\InventorEventsLibrary\InventorEvents2010\obj\Release\ResolveAssemblyReference.cache
 X:\Visual Studio Workspace\InventorEventsLibrary\InventorEvents2010\obj\Release\InventorEvents2010.dll
 X:\Visual Studio Workspace\InventorEventsLibrary\InventorEvents2010\obj\Release\InventorEvents2010.pdb
+C:\Users\hallm_000\Dropbox\X Drive\Visual Studio Workspace\InventorEventsLibrary\InventorEvents2010\bin\Release\InventorEvents2010.dll
+C:\Users\hallm_000\Dropbox\X Drive\Visual Studio Workspace\InventorEventsLibrary\InventorEvents2010\bin\Release\InventorEvents2010.pdb
+C:\Users\hallm_000\Dropbox\X Drive\Visual Studio Workspace\InventorEventsLibrary\InventorEvents2010\bin\Release\InventorEvents2010.tlb
+C:\Users\hallm_000\Dropbox\X Drive\Visual Studio Workspace\InventorEventsLibrary\InventorEvents2010\bin\Release\Autodesk.Inventor.Interop.dll
+C:\Users\hallm_000\Dropbox\X Drive\Visual Studio Workspace\InventorEventsLibrary\InventorEvents2010\obj\Release\InventorEvents2010.csprojResolveAssemblyReference.cache
+C:\Users\hallm_000\Dropbox\X Drive\Visual Studio Workspace\InventorEventsLibrary\InventorEvents2010\obj\Release\InventorEvents2010.dll
+C:\Users\hallm_000\Dropbox\X Drive\Visual Studio Workspace\InventorEventsLibrary\InventorEvents2010\obj\Release\InventorEvents2010.pdb

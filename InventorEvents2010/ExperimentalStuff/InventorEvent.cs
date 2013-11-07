@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Inventor;
-using System.Windows.Forms;
+﻿using InventorEvents2010.ExperimentalStuff;
 using InventorEvents2010.Interfaces;
 
 namespace InventorEvents2010
@@ -17,14 +12,14 @@ namespace InventorEvents2010
     /// </summary>
     /// <typeparam name="TInventorEventGroup"></typeparam>
     /// <typeparam name="TEventLibrary"></typeparam>
-    public class InventorEvent<TInventorEventGroup, TEventLibrary> : 
-        IInventorEvent<TInventorEventGroup,TEventLibrary> where TEventLibrary : 
+    public class InventorEvent<TInventorEventGroup, TEventLibrary> :
+        IInventorEvent<TInventorEventGroup, TEventLibrary> where TEventLibrary :
         IEventLibraryType<TInventorEventGroup>
     {
         public TEventLibrary EventLibrary { get; private set; }
 
         public TInventorEventGroup EventGroup { get { return EventLibrary.GetEventGroup(); } }
-        
+
         //Constructor
         public InventorEvent(TEventLibrary eventLibrary)
         {
